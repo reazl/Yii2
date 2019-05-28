@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use app\models\ActiveRecords\Users;
+
 class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id;
@@ -10,7 +12,7 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public $authKey;
     public $accessToken;
 
-    private static $users = [
+    /*private static $users = [
         '100' => [
             'id' => '100',
             'username' => 'admin',
@@ -25,15 +27,21 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
             'authKey' => 'test101key',
             'accessToken' => '101-token',
         ],
-    ];
+    ];*/
 
 
     /**
      * {@inheritdoc}
      */
+
+    /*public static function getUser($id){
+        $user = Users::findOne($id);
+        var_dump($user);
+    }*/
+
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return isset(self::$user[$id]) ? new static(self::$users[$id]) : null;
     }
 
     /**

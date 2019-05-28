@@ -9,9 +9,9 @@ $( document ).ready(function() {
         /*$('.hidden_task').css('display', 'flex');
     });*/
             evt.preventDefault();
-            $('.hidden_task').css('display', 'flex');
+            $('.hidden_task').css('display', 'block');
     $.ajax({
-        url: "/index.php?r=task/add",
+        url: "/index.php?r=task",
         type: "POST",
 
 

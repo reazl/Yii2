@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\ActiveRecords\Users;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -17,6 +18,7 @@ class SiteController extends Controller
      */
     public function behaviors()
     {
+
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -61,6 +63,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
         return $this->render('index');
     }
 
@@ -75,12 +78,12 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new Users();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
 
-        $model->password = '';
+//        $model->password = '';
         return $this->render('login', [
             'model' => $model,
         ]);

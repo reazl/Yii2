@@ -1,8 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
-$username = Yii::$app->user->identity->username;
-if (is_null(Yii::$app->user->identity->username))
+
+$username = \app\models\ActiveRecords\Users::findIdentity(Yii::$app->user->id)->login;
+if (is_null($username))
     $username = 'гость';
 $this->title = 'TaskManager';
 ?>
@@ -19,11 +20,7 @@ $this->title = 'TaskManager';
     <div class="body-content">
 
         <div class="row hidden_task">
-            <div class="col-lg-4">
 
-            </div>
-            <div class="col-lg-4">
-                 </div>
         </div>
 
     </div>

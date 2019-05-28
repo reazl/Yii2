@@ -14,10 +14,9 @@ use yii\web\Controller;
 
 class TaskController extends Controller
 {
-    public function actionAdd(){
-        $task = new Task(1);
-        
-        return $this->render('test', [
+    public function actionIndex(){
+        /*$task = new Task(1);
+        return $this->renderAjax('test', [
             'header'=> $task->summary,
             'body'=> $task->body,
             'author'=> $task->author,
@@ -27,6 +26,20 @@ class TaskController extends Controller
             'date'=> $task->date
 
 
-            ]);
+        ]);*/
+        $tasks = DbController::getTasks();
+        return $this->renderAjax('test', ['tasks' => $tasks]);
+
+       /* return $this->render('test', [
+            'header'=> $task->summary,
+            'body'=> $task->body,
+            'author'=> $task->author,
+            'deadline'=> $task->deadline,
+            'executer'=> $task->executer,
+            'section'=> $task->section,
+            'date'=> $task->date
+
+
+            ]);*/
     }
 }
