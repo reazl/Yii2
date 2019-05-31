@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$username = \app\models\ActiveRecords\Users::findIdentity(Yii::$app->user->id)->login;
+$username = \app\models\UserIdentity::findIdentity(Yii::$app->user->id)->username;
 if (is_null($username))
     $username = 'гость';
 $this->title = 'TaskManager';

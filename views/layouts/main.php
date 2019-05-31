@@ -50,7 +50,7 @@ AppAsset::register($this);
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
                     'Logout (' .
-                    \app\models\ActiveRecords\Users::findIdentity(Yii::$app->user->id)->login . ')',
+                    \app\models\UserIdentity::findIdentity(Yii::$app->user->id)->username . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
