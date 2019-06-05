@@ -9,37 +9,32 @@
 namespace app\controllers;
 
 
-use app\models\Task;
+use app\models\ActiveRecords\Tasks;
+
+
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 
 class TaskController extends Controller
 {
     public function actionIndex(){
-        /*$task = new Task(1);
-        return $this->renderAjax('test', [
-            'header'=> $task->summary,
-            'body'=> $task->body,
-            'author'=> $task->author,
-            'deadline'=> $task->deadline,
-            'executer'=> $task->executer,
-            'section'=> $task->section,
-            'date'=> $task->date
 
+        $dataProvider = new ActiveDataProvider([
+            'pagination' => [
+                'pageSize' =>3
+            ],
+            'query' => Tasks::find()
+        ]);
 
-        ]);*/
-        $tasks = DbController::getTasks();
-        return $this->renderAjax('test', ['tasks' => $tasks]);
+        return $this->renderAjax('index', ['dataProvider' => $dataProvider]);
 
-       /* return $this->render('test', [
-            'header'=> $task->summary,
-            'body'=> $task->body,
-            'author'=> $task->author,
-            'deadline'=> $task->deadline,
-            'executer'=> $task->executer,
-            'section'=> $task->section,
-            'date'=> $task->date
+    }
+    public function actionCard($id){
+        $model = Tasks::findOne($id);
 
-
-            ]);*/
+        return $this->render('Card', [
+            'model' => $model,
+            'status' => $model->status->toArray()['name']
+        ]);
     }
 }

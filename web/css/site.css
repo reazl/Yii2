@@ -3,6 +3,22 @@ body {
     height: 100%;
 }
 
+.preview-container{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+}
+
+.preview-container .pagination{
+    position: absolute;
+    top: 160px;
+}
+.preview-container h2{
+    min-height: 66px;
+}
+.preview-container a{
+    text-decoration: none;
+}
 .hidden_task{
     display:none;
 }
